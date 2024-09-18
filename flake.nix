@@ -1,5 +1,5 @@
 {
-  description = "My own collection of flakes";
+  description = "My own collection of flake templates";
 
   outputs = { self }: {
 
@@ -10,5 +10,6 @@
         description = "Java template with jdtls";
       };
 
+    };
   };
 }
