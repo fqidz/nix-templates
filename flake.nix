@@ -10,6 +10,11 @@
         description = "Java template with jdtls";
       };
 
+      rust = {
+        path = ./rust;
+        description = "Basic Rust flake template";
+      };
+
     };
   };
 }
