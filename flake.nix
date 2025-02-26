@@ -15,6 +15,11 @@
         description = "Basic Rust flake template";
       };
 
+      c = {
+        path = ./c;
+        description = "Basic C flake template with clang and clangd";
+      };
+
     };
   };
 }
