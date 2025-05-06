@@ -3,14 +3,18 @@
 
   outputs = { self, nixpkgs }:
   let
-    pkgs = nixpkgs.legacyPackages."x86_64-linux";
+    pkgs = import nixpkgs {
+      system = "x86_64-linux";
+      # config.allowUnfree = true;
+    };
   in
   {
     devShells."x86_64-linux".default = pkgs.mkShell {
-      packages = with pkgs; [
-        rustup
-        cargo
-        rust-analyzer
+      packages = [
+        pkgs.rustc
+        pkgs.rust-analyzer
+        pkgs.rustfmt
+        pkgs.cargo
       ];
     };
   };

@@ -1,7 +1,7 @@
 {
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  outputs = { self, nixpkgs }:
+  outputs = { self, nixpkgs, nixpkgs-fork }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -11,13 +11,16 @@
   in
   {
     devShells."x86_64-linux".default = pkgs.mkShell {
-
       packages = [
         # pkgs.clang-tools should come before pkgs.clang or else clangd can't detect headers
         # https://github.com/NixOS/nixpkgs/issues/76486
         pkgs.clang-tools
         pkgs.clang
+
+        pkgs.gdb
         pkgs.gnumake
+        pkgs.valgrind
+        pkgs.hyperfine
 
         # manpaths dont appear in devshells
         # https://github.com/NixOS/nixpkgs/pull/234367
@@ -32,6 +35,12 @@
           ];
         })
       ];
+
+      buildInputs = [
+        pkgs.glibc
+      ];
+
+      # C_INCLUDE_PATH = "${pkgs.(...)}/path/to/include";
     };
   };
 }
