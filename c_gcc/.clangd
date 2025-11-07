@@ -1,0 +1,9 @@
+CompileFlags:
+  Add: [
+    -xc,
+    -Wall,
+    -Wpedantic,
+    -std=c11,
+  ]
+  Remove: [-W*]
+  Compiler: gcc

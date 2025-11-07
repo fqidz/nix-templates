@@ -20,6 +20,11 @@
         description = "Basic C flake template with clang and clangd";
       };
 
+      c_gcc = {
+        path = ./c_gcc;
+        description = "Basic C flake template with gcc and clangd";
+      };
+
     };
   };
 }
